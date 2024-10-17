@@ -14,7 +14,7 @@ loginForm.addEventListener('submit', e => {
     const loginInput = e.target.elements['email'];
     const messageInput = e.target.elements['message'];
 
-    if (loginInput.value.trim().length === 0 || passwordInput.value.trim().length === 0) {
+    if (loginInput.value.trim().length === 0 || messageInput.value.trim().length === 0) {
         alert('Fill please all fields');
         return;
     }
@@ -29,10 +29,7 @@ loginForm.addEventListener('submit', e => {
 });
 
 loginForm.addEventListener('input', e => {
-
     formData[e.target.name] = e.target.value.trim();
-    console.log(formData);
-
 
     localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 })
