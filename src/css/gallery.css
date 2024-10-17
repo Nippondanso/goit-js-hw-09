@@ -1,0 +1,27 @@
+.gallery {
+  width: 1440px;
+  /* width: 1440px; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px 24px;
+  /* padding: 100px 150px;
+  border: 1px solid black; */
+
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.gallery-image {
+  width: 360px;
+  height: 200px;
+  object-fit: cover;
+  cursor:zoom-in;
+
+  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-image:hover {
+  scale: 1.05;
+}
