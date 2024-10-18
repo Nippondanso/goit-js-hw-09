@@ -21,7 +21,7 @@ loginForm.addEventListener('submit', e => {
 
     formData = {
         email: loginInput.value.trim(),
-        password: messageInput.value.trim()
+        message: messageInput.value.trim()
     };
 
     console.log(formData);
