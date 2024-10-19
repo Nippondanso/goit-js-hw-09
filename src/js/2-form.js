@@ -23,6 +23,7 @@ loginForm.addEventListener('submit', e => {
         email: loginInput.value.trim(),
         message: messageInput.value.trim()
     };
+    localStorage.removeItem('feedback-form-state');
 
     console.log(formData);
     e.target.reset();
