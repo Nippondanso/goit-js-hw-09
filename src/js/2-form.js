@@ -2,11 +2,15 @@ let loginForm = document.querySelector('.login-form');
 let formData = { email: "", message: "" };
 
 if (localStorage.getItem('feedback-form-state')) {
-    let parsedData = JSON.parse(localStorage.getItem('feedback-form-state'));
-    loginForm.elements.email.value = parsedData.email;
-    loginForm.elements.message.value = parsedData.message;
-    formData.email = parsedData.email;
-    parsedData.message = parsedData.message;
+    try {
+        let parsedData = JSON.parse(localStorage.getItem('feedback-form-state'));
+        loginForm.elements.email.value = parsedData.email;
+        loginForm.elements.message.value = parsedData.message;
+        formData.email = parsedData.email;
+        parsedData.message = parsedData.message;
+    } catch (error) {
+        clg('Error parsing JSON:', error);
+    }
 }
 
 loginForm.addEventListener('submit', e => {
@@ -19,14 +23,7 @@ loginForm.addEventListener('submit', e => {
         return;
     }
 
-    formData = {
-        email: loginInput.value.trim(),
-        message: messageInput.value.trim()
-    };
-    localStorage.removeItem('feedback-form-state');
-
-    console.log(formData);
-    e.target.reset();
+    showResultData({ loginInput, messageInput });
 });
 
 loginForm.addEventListener('input', e => {
@@ -34,3 +31,20 @@ loginForm.addEventListener('input', e => {
 
     localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 })
+
+const showResultData = (data) => {
+    formData = {
+        email: data.loginInput.value.trim(),
+        message: data.messageInput.value.trim()
+    };
+
+    console.log(formData);
+
+    clearForm();
+};
+
+const clearForm = () => {
+    loginForm.reset();
+    localStorage.removeItem('feedback-form-state');
+    formData = { email: "", message: "" };
+};
