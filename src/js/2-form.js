@@ -7,9 +7,9 @@ if (localStorage.getItem('feedback-form-state')) {
         loginForm.elements.email.value = parsedData.email;
         loginForm.elements.message.value = parsedData.message;
         formData.email = parsedData.email;
-        parsedData.message = parsedData.message;
+        formData.message = parsedData.message;
     } catch (error) {
-        clg('Error parsing JSON:', error);
+        console.log('Error parsing JSON:', error);
     }
 }
 
